@@ -17,7 +17,8 @@
                 <li><a href="#About">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="loginsignin.html" >LogIn/SignIn</a></li>
-				<li><a href="menu.html" class="cta-btn">Order Now</a></li>
+		<li><a href="menu.html" class="cta-btn">Order Now</a></li>
+                 <li><button id="theme-button" class="cta-btn">🌙</button></li>
             </ul>
         </nav>
         <div class="menu-toggle">&#9776;</div>
@@ -261,7 +262,47 @@ body {
 .logo span {
     color: #E6BEAE;
 }
- 
+ :root {
+    --primary-bg: #ECF8F8;
+    --primary-text: #333;
+    --button-bg: #B2967D;
+    --button-text: #FFF;
+}
+
+.dark-theme {
+    --primary-bg: #333;
+    --primary-text: #ECF8F8;
+    --button-bg: #E6BEAE;
+    --button-text: #000;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    font-family: Arial, sans-serif;
+    transition: all 0.3s ease-in-out;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--primary-bg);
+}
+
+button {
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
 .nav-links {
     list-style: none;
     display: flex;
