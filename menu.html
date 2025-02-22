@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Kitchen</title>
+	<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+     
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+			<li><a href="D:\project\ki.html">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+			<li><a href="D:\project\detail.html">Details</a></li>
+        </ul>
+    </nav>
+
+    <!-- Indian Cafe Menu -->
+    <section id="menu" class="menu">
+    <h1>Cloud<span>Kitchen</span></h1>
+    <div class="menu-container">
+
+        <!-- Appetizers -->
+        <div class="menu-category">
+            <h2>Veg Starters</h2>
+            <ul>
+                <li>Masala Papad - ₹40 <button onclick="addToCart('Masala Papad', 40)">Add to Cart</button></li>
+                <li>French Fries - ₹80 <button onclick="addToCart('French Fries', 80)">Add to Cart</button></li>
+                <li>Veg Pakora - ₹90 <button onclick="addToCart('Veg Pakora', 90)">Add to Cart</button></li>
+                <li>Paneer Tikka - ₹150 <button onclick="addToCart('Paneer Tikka', 150)">Add to Cart</button></li>
+				<li>Chilli Paneer – ₹160 <button onclick="addToCart('Chilli Paneer',160)">Add to Cart</button></li>
+				<li>Hakka Veg Spring Rolls – ₹120 <button onclick="addToCart('Hakka Veg Spring Rolls',120)">Add to Cart</button></li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h2>Non-Veg Starters</h2>
+            <ul>
+                <li>Chicken Pakora - ₹130 <button onclick="addToCart('Chicken Pakora', 130)">Add to Cart</button></li>
+                <li>Chicken Tikka - ₹180 <button onclick="addToCart('Chicken Tikka', 180)">Add to Cart</button></li>
+                <li>Chilli Chicken – ₹170 <button onclick="addToCart('Chilli Chicken',170)">Add to Cart</button></li>
+                <li>Fish Fry - ₹190 <button onclick="addToCart('Fish Fry', 190)">Add to Cart</button></li>
+                <li>Mutton Seekh Kebab – ₹210 <button onclick="addToCart('Mutton Seekh Kebab',210)">Add to Cart</button></li>
+            </ul>
+        </div>
+
+        <!-- Beverages -->
+        <div class="menu-category">
+            <h2>Hot Beverages</h2>
+            <ul>
+                <li>Masala Chai - ₹30 <button onclick="addToCart('Masala Chai', 30)">Add to Cart</button></li>
+                <li>Filter Coffee - ₹40 <button onclick="addToCart('Filter Coffee', 40)">Add to Cart</button></li>
+            </ul>
+        </div>
+
+        <div class="menu-category">
+            <h2>Cold Beverages</h2>
+            <ul>
+                <li>Cold Coffee - ₹80 <button onclick="addToCart('Cold Coffee', 80)">Add to Cart</button></li>
+                <li>Mojito - ₹70 <button onclick="addToCart('Mojito', 70)">Add to Cart</button></li>
+            </ul>
+        </div>
+    </div>
+</section>
+    <!-- Cart Section -->
+    <section id="cart" class="cart">
+        <h1>Your Cart</h1>
+        <ul id="cart-items"></ul>
+        <p>Total: ₹<span id="total-price">0</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </section>
+
+	<style>
+	/* Global Styles */
+body {
+    background: #ECF8F8;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation */
+nav {
+    text-align: center;
+    padding: 15px;
+    background: #B2967D;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+}
+
+/* Menu Section */
+ .menu {
+        text-align: center;
+        padding: 20px;
+        background: #EEE4E1;
+        border-radius: 12px;
+    }
+
+    .menu h1 {
+        font-size: 2rem;
+        color: #B2967D;
+    }
+
+    .menu-category {
+        margin-bottom: 20px;
+        background: #E7D8C9;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .menu-category h2 {
+        color: #E6BEAE;
+    }
+
+    .menu-category ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .menu-category ul li {
+        font-size: 1.1rem;
+        color: #6d5845;
+        margin-bottom: 10px;
+        padding: 10px;
+        background: #ECF8F8;
+        border-radius: 8px;
+    }
+
+    button {
+        background: #B2967D;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background: #E6BEAE;
+    }
+/* Cart Section */
+.cart {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background: #EEE4E1;
+    border-radius: 12px;
+}
+.cart h1{
+
+    font-size: 1.5rem;
+    color: #B2967D;
+
+}
+.cart p{
+
+    font-size: 1.5rem;
+    color: #B2967D;
+
+}
+.cart ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cart ul li {
+    font-size: 1.1rem;
+    color: #6d5845;
+    margin-bottom: 5px;
+}
+
+.cart button {
+    margin-top: 15px;
+    background: #B2967D;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.cart button:hover {
+    background: #E6BEAE;
+}
+
+
+	</style>
+	<script>
+let cart = [];
+        let totalPrice = 0;
+
+        function addToCart(itemName, itemPrice) {
+            cart.push({ name: itemName, price: itemPrice });
+            totalPrice += itemPrice;
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById("cart-items").innerHTML = cart.map(item => 
+                `<li>${item.name} - ₹${item.price}</li>`
+            ).join("");
+
+            document.getElementById("total-price").textContent = `Total: ₹${totalPrice}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            let customerName = prompt("Enter your name:");
+            if (!customerName) return;
+
+            let address = prompt("Enter your address:");
+            if (!address) return;
+
+            // Prepare order data
+            const orderData = { customerName, address, items: cart, totalPrice };
+
+            // Send order to backend
+            fetch("http://localhost:5000/order", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                cart = [];
+                totalPrice = 0;
+                updateCart();
+            })
+            .catch(error => console.error("❌ Error:", error));
+        }
+
+
+
+	</script>
+	 
+
+</body>
+</html>
